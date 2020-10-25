@@ -1,0 +1,14 @@
+{
+  "demo": {
+    "email": "user@phptravels.com",
+    "password": "demouser",
+    "firstName": "Demo",
+    "lastName": "User"
+  },
+  "hola": {
+    "email": "hola@phptravels.com",
+    "password": "hola",
+    "firstName": "hola",
+    "lastName": "User"
+  }
+}

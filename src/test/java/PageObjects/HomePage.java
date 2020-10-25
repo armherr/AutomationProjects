@@ -1,6 +1,6 @@
 package PageObjects;
 
-import org.apache.commons.lang3.StringUtils;
+import PageObjects.Common.BasePageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,12 +17,34 @@ public class HomePage extends BasePageObject {
         Assert.assertTrue(slider.isDisplayed());
     }
 
+    /**
+     * Enum with all the tabs in Home page
+     */
     public enum Tabs {
-        HOTELS, FLIGHTS, BOATS, RENTALS, TOURS, CARS, VISA
+        HOTELS("Hotels"), FLIGHTS("Flights"),
+        BOATS("Boats"), RENTALS("Rentals"),
+        TOURS("Tours"), CARS("Cars"),
+        VISA("Visa");
+
+        private final String value;
+
+        Tabs(String value) {
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return value;
+        }
     }
 
+    /**
+     * Clicks on the tab received
+     *
+     * @param tab: Tab to click on
+     */
     public void clickOnTab(Tabs tab) {
-        String tabLocator = String.format("//a[@data-toggle='tab'][contains(text(), '%s')]", StringUtils.capitalize(tab.toString().toLowerCase()));
-        driver.findElement(By.xpath(tabLocator)).click();
+        String tabPath = String.format("//a[@data-toggle='tab'][contains(text(), '%s')]", tab.toString());
+        driver.findElement(By.xpath(tabPath)).click();
     }
 }

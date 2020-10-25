@@ -1,7 +1,7 @@
 package PageObjects.Common;
 
-import PageObjects.BasePageObject;
 import PageObjects.HomePage;
+import PageObjects.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,12 +12,12 @@ public class NavigationBar extends BasePageObject {
     private WebElement homeLink;
 
     @FindBy(linkText = "company")
-    private WebElement companyLink;
+    private WebElement companyDropDown;
 
-    @FindBy(linkText = "My Account")
+    @FindBy(xpath = "//a[contains(., 'My Account')]")
     private WebElement myAccountDropDown;
 
-    @FindBy(linkText = "login")
+    @FindBy(linkText = "Login")
     private WebElement loginLink;
 
     @FindBy(linkText = "Sign Up")
@@ -31,8 +31,24 @@ public class NavigationBar extends BasePageObject {
         Assert.assertTrue(homeLink.isDisplayed());
     }
 
+    /**
+     * Navigate to Home page
+     *
+     * @return HomePage object
+     */
     public HomePage navigateToHome() {
         this.homeLink.click();
         return new HomePage(driver);
+    }
+
+    /**
+     * Navigate to Login page
+     *
+     * @return LoginPage object
+     */
+    public LoginPage navigateToLogin() {
+        myAccountDropDown.click();
+        loginLink.click();
+        return new LoginPage(driver);
     }
 }
