@@ -127,6 +127,15 @@ public class AccountPage extends BasePageObject {
         System.out.println("Section " + section.toString() + " is visible now");
     }
 
+    /**
+     * Looks for the provided string in the greeting label
+     *
+     * @param fullName: Name to look for
+     */
+    public boolean greetingMessageContainsName(String fullName) {
+        return this.greetingLabel.getText().contains(fullName);
+    }
+
     public String getGreetingMessage() {
         return this.greetingLabel.getText();
     }

@@ -17,6 +17,9 @@ public class LoginPage extends BasePageObject {
     @FindBy(className = "loginbtn")
     private WebElement loginButton;
 
+    @FindBy(xpath = "//div[contains(text(), 'Invalid Email or Password')]")
+    private WebElement invalidEmailPasswordAlert;
+
     public LoginPage(WebDriver driver) {
         super(driver);
         Assert.assertTrue(emailField.isDisplayed());
@@ -36,5 +39,23 @@ public class LoginPage extends BasePageObject {
         loginButton.click();
         System.out.println("Logged in with user credentials");
         return new AccountPage(driver);
+    }
+
+    /**
+     * Enters invalid email and password received, then clicks on Login button
+     *
+     * @param email:    Invalid email
+     * @param password: Invalid password
+     */
+    public void tryLoginWithWrongUser(String email, String password) {
+        System.out.println("Entering wrong user credentials");
+        emailField.sendKeys(email);
+        passwordField.sendKeys(password);
+        loginButton.click();
+        System.out.println("Clicked Login button with wrong user credentials");
+    }
+
+    public boolean isInvalidEmailPasswordAlertVisible() {
+        return invalidEmailPasswordAlert.isDisplayed();
     }
 }
