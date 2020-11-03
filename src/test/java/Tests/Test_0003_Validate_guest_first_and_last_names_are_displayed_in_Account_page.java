@@ -25,7 +25,7 @@ public class Test_0003_Validate_guest_first_and_last_names_are_displayed_in_Acco
         Assert.assertTrue(accountPage.greetingMessageContainsName(fullName));
 
         System.out.println("3. Validate current date is displayed");
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMMM yyyy");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("d MMMM yyyy");
         String currentDate = simpleDateFormat.format(new Date());
         Assert.assertEquals(accountPage.getCurrentDate(), currentDate);
 
